@@ -1,4 +1,6 @@
 <?php
+
+// checkt of de admin is ingelogd, en niet een user.
 include "connect.php";
 session_start();
 if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin")
@@ -6,6 +8,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin")
     header("Location: login.php");
     exit();
 }
+//checkt welke 'status' een reservering heeft (1 = nog niet geaccepteerd, 3 = geaccepteerd, 2 = geweigerd)
 
 if (isset($_POST["reservationID"]))
 {
@@ -19,6 +22,8 @@ if (isset($_POST["reservationID"]))
     $resultUser = mysqli_query($conn, $queryUser)->fetch_assoc();
     mail($resultUser["email"], "Reservering geaccepteerd", "Uw reservering is geaccepteerd. Hoera.");
 }
+
+// joint data uit meerdere tabellen die bij een reservering belangrijk zijn.
 
 $query = "SELECT
             r.reservationID,
@@ -35,59 +40,28 @@ $query = "SELECT
         WHERE status = '1'";
 $result = mysqli_query($conn, $query);
 
+if(isset($_SESSION['userID'])) {
+    $loginURL = "<a href='login.php'>Log in</a>";
+} else {
+    $loginURL = "<a href='logout.php'>Log uit</a>";
+
+}
+
 ?>
+
+
 <!DOCTYPE html>
 <head>
     <title>Kleinstra Maasbracht</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css -->
     <link href ="css/bootstrap.min.css" rel ="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 
-<div class="navbar-header navbar-inverse navbar-static-top">
-    <div class="container">
+<?php include"navBar.php" ?>
 
-        <button class="navbar-toggle" data-toggle ="collapse" data-target =".navHeaderCollapse">
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-        </button>
-
-        <div class="collapse navbar-collapse navHeaderCollapse">
-
-            <ul class="nav navbar-nav navbar-left">
-
-                <li><a class="active" href="admin.php">Admin</a></li>
-                <li><a href="index.php">Home</a></li>
-                <li class="dropdown"><a href="shop.html" class ="dropdown-toggle" data-toggle ="dropdown">Shop<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="aggegraten.html">Aggegraten</a></li>
-                        <li><a href="hydrauliek.html">Hydrauliek</a></li>
-                        <li><a href="koppelingen.html">Koppelingen</a></li>
-                        <li><a href="lieren.html">Lieren</a></li>
-                        <li><a href="motoren.html">Motoren</a></li>
-                        <li><a href="schroeven.html">Schroeven</a></li>
-                        <li><a href="overige.html">Overige</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="scheepvaart.html" class= "dropdown-toggle" data-toggle ="dropdown">Scheepvaart<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="vloot.html">Vloot</a></li>
-                        <li><a href="duwbakverhuur.php">Duwbakverhuur</a></li>
-                    </ul>
-                </li>
-                <li><a href="daewoo.html">Daewoo</a></li>
-                <li><a href="login.php">Log in</a></li>
-                <li><a href="register.php">Registreer</a></li>
-                <li><a href="logout.php">Log uit</a></li>
-            </ul>
-        </div>
-
-    </div>
-</div>
 <!-- jumbotron -->
 
 <div class="jumbotron jumbotron-special">
@@ -96,6 +70,11 @@ $result = mysqli_query($conn, $query);
     <h5 class="side-title">Home / Admin overzicht</h5>
 
 </div>
+
+<!-- einde jumbotron -->
+
+<!-- reserverings verzoeken, met accepteer of weiger knop -->
+
     <div class="container">
         <?php foreach($result as $reservation) : ?>
                 <div class="row">
@@ -108,6 +87,7 @@ $result = mysqli_query($conn, $query);
                                 <h4><li><?= $reservation["enddate"]; ?></li></h4>
                                 <h4><li><?= $reservation["firstname"] . " " . $reservation["lastname"] ?></li></h4>
                                 <li>
+                                    <!-- accepteer knop -->
                                     <form action="" method="post">
                                         <input type="hidden" name="type" value="accept">
                                         <input type="hidden" name="reservationID" value=<?= $reservation["reservationID"] ?>">
@@ -115,6 +95,7 @@ $result = mysqli_query($conn, $query);
                                     </form>
                                 </li>
                                 <li>
+                                    <!-- weiger knop -->
                                     <form action="" method="post">
                                         <input type="hidden" name="type" value="decline">
                                         <input type="hidden" name="reservationID" value="<?= $reservation["reservationID"] ?>">
@@ -127,11 +108,6 @@ $result = mysqli_query($conn, $query);
                 </div>
         <?php endforeach; ?>
     </div>
-<div class="row" style="padding-right:200px">
-<div class="col-md-4">
-</div>
-
-</div>
 
 <!--Footer-->
 <div class ="navbar navbar-default navbar-fixed-bottom">
@@ -140,7 +116,6 @@ $result = mysqli_query($conn, $query);
         <p class="navbar-text pull-left">&copy; by Nanda Kleinstra</p>
         <a href ="http://youtube.com/Kleinstra"class="navbar-btn btn-danger btn pull-right">Abonneer op Youtube</a>
         <button class="navbar-btn pull-left" style="width:150px; height:35px; font-size:13px;"><a href ="reservations.php">Geaccepteerde reserveringen</a></button>
-
     </div>
 
 </div>

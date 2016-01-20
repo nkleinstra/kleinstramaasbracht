@@ -1,17 +1,22 @@
 <?php
+// maakt connectie met de database
 require_once 'connect.php';
+// start de sessie
 session_start();
+// stuurt ingevulde data naar de database
 if(isset($_POST["username"])){
     $username = mysqli_real_escape_string($conn, $_POST["username"]);
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
     $query = "SELECT * FROM " . DB_PREFIX . "users WHERE username =  '$username' AND password = '$password'";
 
     $result = mysqli_query($conn, $query);
-
+// als er geen resultaten overeenkomsten met wat in de database staat
     if ($result->num_rows==0)
     {
+        // foutmelding
         echo "Niemand gevonden";
     } else if($result->num_rows==1)
+        // anders, log de user in, en stuur hem naar de homepage.
     {
         $user = $result->fetch_assoc();
         $_SESSION["userID"] = $user["userID"];
@@ -22,58 +27,10 @@ if(isset($_POST["username"])){
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Kleinstra Maasbracht</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href ="css/bootstrap.min.css" rel ="stylesheet">
-    <link rel="stylesheet" type="text/css" href="main.css">
-</head>
-<body>
+<!-- voeg de navbar toe -->
 
-<div class="navbar-header navbar-inverse navbar-static-top">
-    <div class="container">
+<?php include"navBar.php" ?>
 
-        <button class="navbar-toggle" data-toggle ="collapse" data-target =".navHeaderCollapse">
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-        </button>
-
-        <div class="collapse navbar-collapse navHeaderCollapse">
-
-            <ul class="nav navbar-nav navbar-left">
-
-                <li><a href="index.php">Home</a></li>
-                <li class="dropdown"><a href="shop.html" class ="dropdown-toggle" data-toggle ="dropdown">Shop<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="aggegraten.html">Aggegraten</a></li>
-                        <li><a href="hydrauliek.html">Hydrauliek</a></li>
-                        <li><a href="koppelingen.html">Koppelingen</a></li>
-                        <li><a href="lieren.html">Lieren</a></li>
-                        <li><a href="motoren.html">Motoren</a></li>
-                        <li><a href="schroeven.html">Schroeven</a></li>
-                        <li><a href="overige.html">Overige</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="scheepvaart.html" class= "dropdown-toggle" data-toggle ="dropdown">Scheepvaart<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="vloot.html">Vloot</a></li>
-                        <li><a href="duwbakverhuur.php">Duwbakverhuur</a></li>
-                    </ul>
-                </li>
-                <li><a href="daewoo.html">Daewoo</a></li>
-                <li><a href="login.php">Log in</a></li>
-                <li><a href="register.php">Registreer</a></li>
-                <li><a href="logout.php">Log uit</a></li>
-            </ul>
-        </div>
-
-    </div>
-</div>
 <!-- jumbotron -->
 
 <div class="jumbotron jumbotron-special">
@@ -84,7 +41,9 @@ if(isset($_POST["username"])){
 </div>
 <br>
 <br>
-<!--LOGIN SYSTEM -->
+
+<!--Login formulier -->
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">

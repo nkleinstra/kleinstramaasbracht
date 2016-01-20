@@ -1,4 +1,5 @@
 <?php
+//sessie begint voor de login
 session_start();
 
 if(isset($_POST['username'])) {
@@ -13,27 +14,9 @@ if(isset($_POST['username'])) {
 
     $sql = "SELECT id, username, password FROM " . DB_PREFIX . "members WHERE username = '$usname' AND activated = '1' LIMIT 1 ";
 
-//check if the username and the password they entered was correct
-
 }
 
-//session_start();
-//$theUser = $_SESSION['uid'];
-//
-//
-//$query = "SELECT * FROM users WHERE username = '$theUser'";
-//echo $query;
-//
-//if(isset($_SESSION['uid']))
-//{
-//    echo "JE BENT INGLOGD";
-//}
-//else
-//{
-//    echo "JE BENT NIET INGELOGD";
-//}
-//
-//?>
+?>
 
 
 <!DOCTYPE html>
@@ -45,50 +28,11 @@ if(isset($_POST['username'])) {
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
+<!-- navigatie bar word toegevoegd -->
 
-<div class="navbar-header navbar-inverse navbar-static-top">
-    <div class="container">
+<?php include"navBar.php" ?>
 
-        <button class="navbar-toggle" data-toggle ="collapse" data-target =".navHeaderCollapse">
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-        </button>
-
-        <div class="collapse navbar-collapse navHeaderCollapse">
-
-            <ul class="nav navbar-nav navbar-left">
-                <li><a href="admin.php">Admin</a></li>
-                <li class="active"><a href="index.php">Home</a></li>
-                <li class="dropdown"><a href="shop.html" class ="dropdown-toggle" data-toggle ="dropdown">Shop<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="aggegraten.html">Aggegraten</a></li>
-                        <li><a href="hydrauliek.html">Hydrauliek</a></li>
-                        <li><a href="koppelingen.html">Koppelingen</a></li>
-                        <li><a href="lieren.html">Lieren</a></li>
-                        <li><a href="motoren.html">Motoren</a></li>
-                        <li><a href="schroeven.html">Schroeven</a></li>
-                        <li><a href="overige.html">Overige</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="scheepvaart.html" class= "dropdown-toggle" data-toggle ="dropdown">Scheepvaart<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="vloot.html">Vloot</a></li>
-                        <li><a href="duwbakverhuur.php">Duwbakverhuur</a></li>
-                    </ul>
-                </li>
-                <li><a href="daewoo.html">Daewoo</a></li>
-                <li><a href="login.php">Log in</a></li>
-                <li><a href="register.php">Registreer</a></li>
-                <li><a href="logout.php">Log uit</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<!-- Container -->
+<!-- Jumbtoron -->
 
     <div class="jumbotron">
 
@@ -101,20 +45,17 @@ if(isset($_POST['username'])) {
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </div>
 
-
-<!--grid system-->
-
 <div class="container">
 
     <div class="row">
 
         <div class="col-md-9">
             <br>
-            <img src="bedrijf.png" alt="bedrijf" style="width:600px;height:200px;">
+            <img src="pictures/algemeen/bedrijf.png" alt="bedrijf" style="width:600px;height:200px;">
 
             <h1>Contact</h1>
 
-            <!--contactform-->
+            <!--contactformulier sessie begint-->
             <?php
 
             if(!isset($_SESSION)) {
@@ -127,16 +68,7 @@ if(isset($_POST['username'])) {
             $fields= isset($_SESSION['fields']) ? $_SESSION['fields'] : [];
 
             ?>
-
-            <!doctype html>
-            <html>
-            <head>
-                <meta charset="utf-8">
-                <title>Contact form</title>
-
-                <link rel="stylesheet" type="text/css" href="main.css">
-            </head>
-            <body>
+            <!-- contactformulier invulvelden -->
             <div class="contact" id="contact-form-home">
 
                 <?php if(!empty($errors)): ?>
@@ -148,10 +80,10 @@ if(isset($_POST['username'])) {
                 <form class="content" action="contact.php" method="post">
                     <div class="row">
                     <div class="col-md-10">
-
-                        <input type="text" name="naam" autocomplete="off" placeholder="Je Naam *"<?php echo isset($fields['naam']) ? 'value="' . e($fields['naam']) . '"' : '' ?>>
-
-                        <input type="text" name="email" autocomplete="off" placeholder="Je email adres *"<?php echo isset($fields['email']) ? 'value="' . e($fields['email']) . '"' : '' ?>>
+                        <!-- naam veld -->
+                        <input style="font-size:15px;" type="text" name="naam" autocomplete="off" placeholder="Je Naam *"<?php echo isset($fields['naam']) ? 'value="' . e($fields['naam']) . '"' : '' ?>>
+                        <!-- email veld -->
+                        <input style="font-size:15px;" type="text" name="email" autocomplete="off" placeholder="Je email adres *"<?php echo isset($fields['email']) ? 'value="' . e($fields['email']) . '"' : '' ?>>
 
                         <label>
                     </div>
@@ -159,30 +91,27 @@ if(isset($_POST['username'])) {
                     <div class="row">
                     <div class="col-md-6">
                         </label>
-                        <textarea name="bericht" rows="8" placeholder="Type hier je bericht *"><?php echo isset($fields['bericht']) ? e($fields['bericht']) : '' ?></textarea>
-
-                        <input type="submit" value="Verstuur uw bericht">
-
-                        <p class="muted">Velden met een * mogen niet leeg blijven.</p>
+                        <!-- bericht veld -->
+                        <textarea style="font-size:15px;" name="bericht" rows="8" placeholder="Type hier je bericht *"><?php echo isset($fields['bericht']) ? e($fields['bericht']) : '' ?></textarea>
+                        <!-- verstuur knop -->
+                        <input style="font-size:15px; height:30px; width:100px;" type="submit" value="Verstuur">
+                        <br>
+                        <br>
+                        <p style="font-size:15px;" class="muted">Velden met een * mogen niet leeg blijven.</p>
                     </div>
 
                 </form>
                 </div>
             </div>
             </div>
-            </body>
-            </html>
-
+    </div>
             <?php
             unset($_SESSION['errors']);
             unset($_SESSION['fields']);
 
             ?>
-            <!--contactform-->
 
-
-</div>
-
+    <!-- contact gegevens kleinstra & zonen -->
 
         <div class="col-md-3">
 

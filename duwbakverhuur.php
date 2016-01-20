@@ -15,13 +15,17 @@ if(isset($_POST["shipID"]))
     $enddateArr = explode("/", $_POST["enddate"]);
     $enddate = $enddateArr[2] . "-" . $enddateArr[1] . "-" . $enddateArr[0];
 
-//    var_dump($_POST);
     $query = "INSERT INTO " . DB_PREFIX . "reservations (startdate, enddate, userID, shipID)
               VALUES ('$startdate', '$enddate', '$userID', '$shipID')";
 
-    mysqli_query($conn, $query);
+        header('Location: thanks2.php');
+
+
+} else {
 
 }
+
+
 
 ?>
 
@@ -37,51 +41,8 @@ if(isset($_POST["shipID"]))
 </head>
 <body>
 
-<div class="navbar-header navbar-inverse navbar-static-top">
-    <div class="container">
+<?php include"navBar.php" ?>
 
-        <button class="navbar-toggle" data-toggle ="collapse" data-target =".navHeaderCollapse">
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-        </button>
-
-        <div class="collapse navbar-collapse navHeaderCollapse">
-
-            <ul class="nav navbar-nav navbar-left">
-
-                <li><a href="index.php">Home</a></li>
-                <li class="dropdown"><a href="shop.html" class ="dropdown-toggle" data-toggle ="dropdown">Shop<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="aggegraten.html">Aggegraten</a></li>
-                        <li><a href="hydrauliek.html">Hydrauliek</a></li>
-                        <li><a href="koppelingen.html">Koppelingen</a></li>
-                        <li><a href="lieren.html">Lieren</a></li>
-                        <li><a href="motoren.html">Motoren</a></li>
-                        <li><a href="schroeven.html">Schroeven</a></li>
-                        <li><a href="overige.html">Overige</a></li>
-                        <li><a href="login.php">Log in</a></li>
-                        <li><a href="logout.php">Log uit</a></li>
-                        <li><a href="register.php">Registreer</a></li>
-                    </ul>
-            </ul>
-            </li>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown active"><a href="scheepvaart.html" class= "dropdown-toggle" data-toggle ="dropdown">Scheepvaart<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="vloot.html">Vloot</a></li>
-                        <li class="active"><a href="duwbakverhuur.php">Duwbakverhuur</a></li>
-                    </ul>
-                </li>
-                <li><a href="daewoo.html">Daewoo</a></li>
-                <li><a href="login.php">Log in</a></li>
-                <li><a href="register.php">Registreer</a></li>
-                <li><a href="logout.php">Log uit</a></li>
-            </ul>
-        </div>
-
-    </div>
-</div>
 <!-- jumbotron -->
 
 <div class="jumbotron jumbotron-special">
@@ -102,7 +63,10 @@ if(isset($_POST["shipID"]))
 
             <h3>Hieronder vindt u een overzicht van onze duwbakken, welke wij ook verhuren.</h3>
 
-<!--tabel -->
+<!-- einde jumbotron -->
+
+<!--responsive tabel -->
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="bs-component">
@@ -142,7 +106,7 @@ if(isset($_POST["shipID"]))
                                                 <b>Max. diepgang</b>: 3,20 m.<Br>
                                                 <b>Laadvermogen</b>: 2102 ton<Br>
                                                 <b>Inhoud onder luiken</b>: 2400 m3<br>
-                                                <b>Prijs per dag</b>: 2400<br> </p>
+                                                <b>Prijs per dag</b>: € 350<br> </p>
                                         </td>
 
                                     </tr>
@@ -160,7 +124,7 @@ if(isset($_POST["shipID"]))
                                             <b>Max. diepgang</b>: 2,80 m.<Br>
                                             <b>Laadvermogen</b>: 1828 ton<Br>
                                             <b>Inhoud onder de luiken</b>: open<br>
-                                            <b>Prijs per dag</b>: 2400<br> </p>
+                                            <b>Prijs per dag</b>: € 350<br> </p>
                                         </p>
                                     </td>
                                     </tbody>
@@ -177,7 +141,7 @@ if(isset($_POST["shipID"]))
                                             <b>Max. diepgang</b>: 2,63 m.<Br>
                                             <b>Laadvermogen</b>: 1076<Br>
                                             <b>inhoud onder luiken</b>: open<br>
-                                            <b>Prijs per dag</b>: 2400<br> </p>
+                                            <b>Prijs per dag</b>: € 350<br> </p>
                                         </p>
                                     </td>
                                     </tbody>
@@ -194,7 +158,7 @@ if(isset($_POST["shipID"]))
                                             <b>Max. diepgang</b>: 3,20 m.<Br>
                                             <b>Laadvermogen</b>: 2102 ton<Br>
                                             <b>inhoud onder luiken</b>: 2400 m3<br>
-                                            <b>Prijs per dag</b>: 2400<br> </p>
+                                            <b>Prijs per dag</b>: € 350<br> </p>
                                         </p>
                                     </td>
                                     </tbody>
@@ -211,7 +175,7 @@ if(isset($_POST["shipID"]))
                                             <b>Max. diepgang</b>: 2,66 m.<Br>
                                             <b>Laadvermogen</b>: 2037 ton<Br>
                                             <b>Inhoud onder luiken</b>: 3800 m3<Br>
-                                            <b>Prijs per dag</b>: 2400<br> </p>
+                                            <b>Prijs per dag</b>: € 350<br> </p>
                                     </td>
                                     </tbody>
                                 </table>
@@ -227,7 +191,7 @@ if(isset($_POST["shipID"]))
                                             <b>Max. diepgang</b>: 2,80 m<Br>
                                             <b>Laadvermogen</b>: 1826 ton<Br>
                                             <b>inhoud onder luiken</b>: 2000 m3<Br>
-                                            <b>Prijs per dag</b>: 2400<br> </p>
+                                            <b>Prijs per dag</b>: € 350<br> </p>
                                     </td>
                                     </tbody>
                                 </table>
@@ -243,7 +207,7 @@ if(isset($_POST["shipID"]))
                                             <b>Max. diepgang</b>: 3,20 m<Br>
                                             <b>Laadvermogen</b>: 2155 ton<Br>
                                             <b>inhoud onder luiken</b>: 2400 m3<Br>
-                                            <b>Prijs per dag</b>: 2400<br> </p>
+                                            <b>Prijs per dag</b>: € 350<br> </p>
 
                                     </td>
                                     </tbody>
@@ -258,15 +222,20 @@ if(isset($_POST["shipID"]))
 </div>
 
 
-<!--tabel -->
+<!--einde responsive tabel -->
+
+<!--Formulier voor reserveringen -->
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <form action="" method="post">
                 <div class="row">
                     <div class="col-md-12">
+                        <!--hier selecteert de user een schip -->
                         <h3>Selecteer hier een schip wat U zou willen huren.</h3>
-                        <select id="ship" name="shipID" style="width:120px; height:30px; font-size:20px;">
+                        <select id="ship" name="shipID" required style="width:120px; height:30px; font-size:20px;">
+                            <option value="0"></option>
                             <option value="1">Bart</option>
                             <option value="2">Bas</option>
                             <option value="3">Koert</option>
@@ -279,32 +248,35 @@ if(isset($_POST["shipID"]))
                 </div>
                 <br>
                 <br>
+                <!--hier selecteert de user een begin datum van verhuur -->
                 <h3>Selecteer hier de gewenste huurperiode.</h3>
                 <div class="row">
                     <div class="col-md-6">
                        <h3>van</h3> <div id="startdate" class="input-group date">
-                            <input type="text" name="startdate" class="form-control">
+                            <input type="text" required name="startdate" class="form-control">
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-th"></i>
                             </span>
                         </div>
                     </div>
+                    <!--hier selecteert de user een eind datum van verhuur -->
                     <div class="col-md-6">
                         <h3>tot</h3> <div id="enddate" class="input-group date">
-                            <input type="text" name="enddate" class="form-control">
+                            <input type="text" required name="enddate" class="form-control">
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-th"></i>
                             </span>
                         </div>
                     </div>
                 </div>
+                <!-- informatie -->
                 <div class="row">
                     <div class="col-md-12">
                         <br>
                         <br>
                         <h4>De betaling word afgehandeld als het schip word opgehaald.
                             U krijgt een bevestiging van uw reservatie,
-                            als de admin deze heeft goedgekeurd <br> dit kan een paar uur duren.
+                            als de admin deze heeft goedgekeurd <br> dit kan even duren.
                         </h4>
                         <br>
                         <input type="submit" name="submit" value="Reserveer" style="width:100px; height:40px; font-size:20px;"/>
@@ -315,10 +287,9 @@ if(isset($_POST["shipID"]))
     </div>
 </div>
 
-
-
-
 <!--Footer-->
+
+
 <div class ="navbar navbar-default navbar-fixed-bottom">
 
     <div class="container">
@@ -327,6 +298,7 @@ if(isset($_POST["shipID"]))
     </div>
 
 </div>
+<!--einde Footer-->
 
 <!--JQuery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -335,6 +307,8 @@ if(isset($_POST["shipID"]))
 <script src="js/bootstrap-datepicker.min.js"></script>
 <script src="js/bootstrap-datepicker.nl.min.js"></script>
 <script>
+
+// datepicker
 
     $('#startdate').datepicker({
         format: "dd/mm/yyyy",

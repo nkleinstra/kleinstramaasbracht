@@ -3,55 +3,14 @@
 <head>
     <title>Kleinstra Maasbracht</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css -->
     <link href ="css/bootstrap.min.css" rel ="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 
-<div class="navbar-header navbar-inverse navbar-static-top">
-    <div class="container">
+<?php include"navBar.php" ?>
 
-        <button class="navbar-toggle" data-toggle ="collapse" data-target =".navHeaderCollapse">
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-        </button>
-
-        <div class="collapse navbar-collapse navHeaderCollapse">
-
-            <ul class="nav navbar-nav navbar-left">
-
-                <li><a href="index.php">Home</a></li>
-                <li class="dropdown"><a href="shop.html" class ="dropdown-toggle" data-toggle ="dropdown">Shop<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="aggegraten.html">Aggegraten</a></li>
-                        <li><a href="hydrauliek.html">Hydrauliek</a></li>
-                        <li><a href="koppelingen.html">Koppelingen</a></li>
-                        <li><a href="lieren.html">Lieren</a></li>
-                        <li><a href="motoren.html">Motoren</a></li>
-                        <li><a href="schroeven.html">Schroeven</a></li>
-                        <li><a href="overige.html">Overige</a></li>
-
-                    </ul>
-            </ul>
-            </li>
-            <!--   <a href="#" class="center"><img src="logo.png"></a> -->
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown active"><a href="scheepvaart.html" class= "dropdown-toggle" data-toggle ="dropdown">Scheepvaart<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="active"><a href="vloot.html">Vloot</a></li>
-                        <li><a href="duwbakverhuur.php">Duwbakverhuur</a></li>
-                    </ul>
-                </li>
-                <li><a href="daewoo.html">Daewoo</a></li>
-                <li><a href="login.php">Log in</a></li>
-                <li><a href="register.php">Registreer</a></li>
-                <li><a href="logout.php">Log uit</a></li>
-            </ul>
-        </div>
-
-    </div>
-</div>
 
 <!-- jumbotron -->
 
@@ -61,7 +20,7 @@
     <h5 class="side-title">Home / Scheepvaart / Vloot</h5>
 
 </div>
-<!--content-->
+<!--activiteiten in de binnenvaart-->
 
 <div class="container">
     <h1>Activiteiten Binnenvaart</h1>
@@ -105,7 +64,7 @@
                 <br>
                 <br>
 
-             <!--Vloot-->
+             <!--Vloot responsive tabel -->
 
             <h1>Onze Vloot</h1>
 
@@ -375,6 +334,7 @@
     </div>
 </div>
 <script>
+// javascript voor de responsive tabel
 
     $(document).ready(function(){
 

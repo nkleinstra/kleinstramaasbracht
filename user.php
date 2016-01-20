@@ -1,13 +1,15 @@
 <?php
+// begin de sessie
 session_start();
 
 if (isset($_SESSION['id'])) {
-    //Put stored variables into local php variable
+    //zet opgeslagen variabelen in lokale php variabel
     $uid = $_SESSION['id'];
     $usname = $_SESSION['username'];
     $result = "test variables: <br> Username: ".$usname. "<br> Id: ".$uid;
+
 } else {
-    $result = "You are not logged in yet";
+    $result = "Je bent nog niet ingelogd";
 }
 ?>
 

@@ -8,51 +8,8 @@
 </head>
 <body>
 
-<div class="navbar-header navbar-inverse navbar-static-top">
-    <div class="container">
+<?php include"navBar.php" ?>
 
-        <button class="navbar-toggle" data-toggle ="collapse" data-target =".navHeaderCollapse">
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-        </button>
-
-        <div class="collapse navbar-collapse navHeaderCollapse">
-
-            <ul class="nav navbar-nav navbar-left">
-
-                <li><a href="index.php">Home</a></li>
-                <li class="dropdown"><a href="shop.html" class ="dropdown-toggle" data-toggle ="dropdown">Shop<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="aggegraten.html">Aggegraten</a></li>
-                        <li><a href="hydrauliek.html">Hydrauliek</a></li>
-                        <li><a href="koppelingen.html">Koppelingen</a></li>
-                        <li><a href="lieren.html">Lieren</a></li>
-                        <li><a href="motoren.html">Motoren</a></li>
-                        <li><a href="schroeven.html">Schroeven</a></li>
-                        <li><a href="overige.html">Overige</a></li>
-                    </ul>
-            </ul>
-            </li>
-            <!--   <a href="#" class="center"><img src="logo.png"></a> -->
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="scheepvaart.html" class= "dropdown-toggle" data-toggle ="dropdown">Scheepvaart<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="vloot.html">Vloot</a></li>
-                        <li><a href="duwbakverhuur.php">Duwbakverhuur</a></li>
-                    </ul>
-                </li>
-                <li class="active"><a href="daewoo.html">Daewoo</a></li>
-                <li><a href="login.php">Log in</a></li>
-                <li><a href="register.php">Registreer</a></li>
-                <li><a href="logout.php">Log uit</a></li>
-
-            </ul>
-
-        </div>
-
-    </div>
-</div>
 
 <!-- jumbotron -->
     <div class="jumbotron jumbotron-special">
@@ -61,8 +18,7 @@
         <h5 class="side-title">Home / Daewoo-Doosan</h5>
 
     </div>
-
-<!--grid system-->
+<!-- introductie tekst -->
 <div class="container">
 
     <div class="row">
@@ -71,7 +27,7 @@
 
             <br>
             <br>
-            <h1>Kleinstra & Zonen V.O.F. � Daewoo daeler sinds 2004 </h1>
+            <h1>Kleinstra & Zonen V.O.F. &amp; Daewoo daeler sinds 2004 </h1>
 
             <h4>Daewoo dieselmotoren zijn een Koreaans kwaliteitsproduct en worden inmiddels wereldwijd toegepast in onder andere scheepvaart, industrie, aggregaten, graafmachines en voertuigen..
                  </h4>
@@ -80,12 +36,13 @@
                 U kunt bij ons terecht voor verkoop levering en/of inbouw van Daewoo motoren. Een aantal scheepsmotoren en generatorsets wordt door ons op voorraad gehouden. Deze motoren en aggregaten zijn in onze nieuwe showroom te zien.</h4>
         </div>
 
+<!--Responsive tabel -->
         <div class="col-md-2">
 
             <br>
             <br>
             <br>
-            <img src="daewoo.png" alt="daewoo" style="width:180px;height:220px;">
+            <img src="pictures/algemeen/daewoo.png" alt="daewoo" style="width:180px;height:220px;">
         </div>
 
         <h1 style ="padding-left: 10px;">Assortiment</h1>
@@ -240,6 +197,9 @@
                 </div>
             </div>
         </div>
+<!--einde Responsive tabel -->
+
+        <!-- javascript voor tabel -->
 
         <script>
 

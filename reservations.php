@@ -1,13 +1,14 @@
 <?php
+// maak een connectie met de database
 include "connect.php";
 session_start();
-
+// als de user niet ingelogd is als admin, stuur hem door naar de login pagina.
 if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin")
 {
     header("Location: login.php");
     exit();
 }
-
+// laat alleen de reserveringen zien die nog niet geaccepteerd zijn
 if (isset($_POST["reservationID"]))
 {
     $reservationID = $_POST["reservationID"];
@@ -17,7 +18,7 @@ if (isset($_POST["reservationID"]))
     $queryStatus = "UPDATE " . DB_PREFIX . "reservations SET status='$status' WHERE reservationID = '$reservationID'";
     mysqli_query($conn, $queryStatus);
 }
-
+// onderstaande data is zichtbaar op de pagina
 $query = "SELECT
             r.reservationID,
             r.startdate,
@@ -39,54 +40,14 @@ $result = mysqli_query($conn, $query);
 <head>
     <title>Kleinstra Maasbracht</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css -->
     <link href ="css/bootstrap.min.css" rel ="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
+<!-- navigatie bar -->
+<?php include"navBar.php" ?>
 
-<div class="navbar-header navbar-inverse navbar-static-top">
-    <div class="container">
-
-        <button class="navbar-toggle" data-toggle ="collapse" data-target =".navHeaderCollapse">
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-            <span class ="icon-bar"></span>
-        </button>
-
-        <div class="collapse navbar-collapse navHeaderCollapse">
-
-            <ul class="nav navbar-nav navbar-left">
-
-                <li><a class="active" href="admin.php">Admin</a></li>
-                <li><a href="index.php">Home</a></li>
-                <li class="dropdown"><a href="shop.html" class ="dropdown-toggle" data-toggle ="dropdown">Shop<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="aggegraten.html">Aggegraten</a></li>
-                        <li><a href="hydrauliek.html">Hydrauliek</a></li>
-                        <li><a href="koppelingen.html">Koppelingen</a></li>
-                        <li><a href="lieren.html">Lieren</a></li>
-                        <li><a href="motoren.html">Motoren</a></li>
-                        <li><a href="schroeven.html">Schroeven</a></li>
-                        <li><a href="overige.html">Overige</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a href="scheepvaart.html" class= "dropdown-toggle" data-toggle ="dropdown">Scheepvaart<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="vloot.html">Vloot</a></li>
-                        <li><a href="duwbakverhuur.php">Duwbakverhuur</a></li>
-                    </ul>
-                </li>
-                <li><a href="daewoo.html">Daewoo</a></li>
-                <li><a href="login.php">Log in</a></li>
-                <li><a href="register.php">Registreer</a></li>
-                <li><a href="logout.php">Log uit</a></li>
-            </ul>
-        </div>
-
-    </div>
-</div>
 <!-- jumbotron -->
 
 <div class="jumbotron jumbotron-special">
@@ -96,6 +57,7 @@ $result = mysqli_query($conn, $query);
 
 </div>
 <br>
+
 <div class="container">
     <?php foreach($result as $reservation) : ?>
         <div>
@@ -113,6 +75,9 @@ $result = mysqli_query($conn, $query);
         </div>
     <?php endforeach; ?>
 </div>
+
+<!-- footer -->
+
 <div class ="navbar navbar-default navbar-fixed-bottom">
 
     <div class="container">

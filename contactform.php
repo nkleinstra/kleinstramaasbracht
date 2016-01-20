@@ -1,5 +1,5 @@
 <?php
-
+//start de sessie
 session_start();
 
 require_once 'security.php';
@@ -14,7 +14,7 @@ $fields= isset($_SESSION['fields']) ? $_SESSION['fields'] : [];
     <head>
         <meta charset="utf-8">
         <title>Contact form</title>
-
+<!-- contact formulier -->
         <link rel="stylesheet" type="text/css" href="main.css">
         </head>
         <body>
@@ -51,6 +51,7 @@ $fields= isset($_SESSION['fields']) ? $_SESSION['fields'] : [];
 </html>
 
 <?php
+// eindigt de sessie
 unset($_SESSION['errors']);
 unset($_SESSION['fields']);
 

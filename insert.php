@@ -1,11 +1,12 @@
 <?php
+//stuurt alle ingevulde data naar de database
+
 include "connect.php";
 
 if(isset($_POST['submit']))
 {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    // $passwordrepeat = $_POST['passwordrepeat'];
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $gender = $_POST['gender'];
@@ -13,7 +14,6 @@ if(isset($_POST['submit']))
 
     $company = $_POST['company'];
     $email = $_POST['email'];
-    // $emailaddition = $_POST['emailaddition'];
     $age = $_POST['age'];
     $phonenumber = $_POST['phonenumber'];
     $streetname = $_POST['streetname'];
@@ -26,6 +26,7 @@ if(isset($_POST['submit']))
     $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_array($result);
 
+// als bepaalde dingen al bezet zijn, krijgt de user een error
 
     if ($data[0] > 1)
     {
